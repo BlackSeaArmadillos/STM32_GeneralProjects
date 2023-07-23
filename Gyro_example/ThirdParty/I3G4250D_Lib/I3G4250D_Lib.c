@@ -633,8 +633,8 @@ Gyro_XYZ_t I3G4250D_ReadGyroXYZ()
 	if (I3G4250D_GetStatusReg() & temp)
 	{
 		HAL_GPIO_WritePin(GPIOE, GPIO_PIN_3, GPIO_PIN_RESET);
-		HAL_SPI_Transmit(&hspi1, &address, 1, 100);
-		HAL_SPI_Receive(&hspi1, buff, 6, 100);
+		HAL_SPI_Transmit(&hspi1, &address, 1, 20);
+		HAL_SPI_Receive(&hspi1, buff, 6, 20);
 		HAL_GPIO_WritePin(GPIOE, GPIO_PIN_3, GPIO_PIN_SET);
 
 		val[0] = (int16_t)buff[1];

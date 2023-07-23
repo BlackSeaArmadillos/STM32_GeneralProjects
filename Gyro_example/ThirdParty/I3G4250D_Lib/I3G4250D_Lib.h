@@ -125,9 +125,9 @@ typedef enum
 
 typedef struct
 {
-	int16_t xAxis;
-	int16_t yAxis;
-	int16_t zAxis;
+	float xAxis;
+	float yAxis;
+	float zAxis;
 } Gyro_XYZ_t;
 
 void I3G4250D_RegisterWriteMultiple(uint8_t address, uint8_t * pData);
