@@ -96,8 +96,6 @@ int main(void)
     uint8_t whoamI = 0;
     uint8_t wreg = 0;
     uint8_t wreg2 = 0;
-    uint8_t rreg = 0;
-    uint8_t ctrl_reg5 = 0;
 
     wreg |= 0x0F;
     whoamI = I3G4250D_WhoIAm();
@@ -107,16 +105,13 @@ int main(void)
 
     wreg = (uint8_t)I3G4250D_ODR_100Hz;
     I3G4250D_GyroEnable(wreg);
-    rreg = I3G4250D_RegisterRead(I3G4250D_CTRL_REG1);
 
     wreg = (uint8_t)I3G4250D_LPF1_HP_ON_OUT;
     I3G4250D_OutSelConfig(wreg);
-    rreg = I3G4250D_RegisterRead(I3G4250D_CTRL_REG5);
 
     wreg = (uint8_t)I3G4250D_HP_NORMAL_MODE_WITH_RST;
     wreg2 = (uint8_t)I3G4250D_HPCF_LEVEL_3;
     I3G4250D_HPFilterConfig(wreg, wreg2);
-    rreg = I3G4250D_RegisterRead(I3G4250D_CTRL_REG2);
 
   /* USER CODE END 2 */
 
@@ -126,7 +121,7 @@ int main(void)
   {
 	  gyro_xyz = I3G4250D_ReadGyroXYZ();
 	  sprintf((char *)buffer, "%f, %f, %f\r\n", gyro_xyz.xAxis, gyro_xyz.yAxis, gyro_xyz.zAxis);
-	  CDC_Transmit_FS((uint8_t *) buffer, strlen(buffer));
+	  CDC_Transmit_FS((uint8_t *) buffer, strlen((const char *) buffer));
 	  HAL_Delay(50);
     /* USER CODE END WHILE */
 
